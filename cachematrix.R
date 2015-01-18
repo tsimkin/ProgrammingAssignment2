@@ -3,6 +3,10 @@
 ## calculate the inverse.  The function "cacheSolve" will retrieve the
 ## cached solution if it exists, or calculate the inverse if it does not.
 
+# This function takes as an argument a matrix, and creates meta-data about the
+# matrix in the form of a list.  The list contains functions necessary to
+# compute the inverse of the matrix.
+
 makeCacheMatrix <- function(x = matrix()) {
     m <- NULL
     set <- function(y) {
@@ -15,6 +19,11 @@ makeCacheMatrix <- function(x = matrix()) {
     list(set=set, get=get, setInverse = setInverse,
          getInverse = getInverse)
 }
+
+# This function returns the inverse of a matrix.  It first looks to see if an
+# inverse has already been calculated and cached, in which case it returns the 
+# cached valued.  Otherwise, it solves the matrix to return the index, and stores
+# the inverse in a variable 'm' associated with the original matrix.
 
 cacheSolve <- function(x, ...) {
     ## Return a matrix that is the inverse of 'x'
